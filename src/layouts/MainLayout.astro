@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar.astro';
 
 const { title, description } = Astro.props;
 ---
+
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -19,8 +21,9 @@ const { title, description } = Astro.props;
     <Sidebar />
     <Header />
     <main>
-      <slot /> </main>
+      <slot />
+    </main>
     <Footer />
-    <script src="/assets/js/main.js"></script>
+    <script is:inline src="/assets/js/main.js"></script>
   </body>
 </html>
