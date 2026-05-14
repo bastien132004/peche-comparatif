@@ -2,28 +2,33 @@
 // src/components/Footer.astro
 ---
 <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="/assets/img/logo/logo.png" alt="PecheComparatif.fr" class="footer-logo" />
-        <p>Comparez. Choisissez. Pêchez Mieux.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Navigation</h4>
-        <a href="/">Accueil</a>
-        <a href="/#categories">Catégories</a>
-        <a href="/articles/meilleur-moulinet.html">Articles</a>
-      </div>
-      <div class="footer-links">
-        <h4>Légal</h4>
-        <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
-        <a href="#">Gestion des cookies</a>
-        <a href="#">Affiliation</a>
-      </div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img
+        src="/assets/img/logo/logo.png"
+        alt="PecheComparatif.fr"
+        class="footer-logo"
+        onerror="this.style.display='none'"
+      />
+      <p>Comparez. Choisissez. Pêchez Mieux.</p>
     </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <p>© 2025 PecheComparatif.fr — Tous droits réservés. Site participant au programme d'affiliation Amazon EU.</p>
-      </div>
+    <div class="footer-links">
+      <h4>Navigation</h4>
+      <a href="/">Accueil</a>
+      <a href="/#categories">Catégories</a>
+      <a href="/articles/meilleur-moulinet">Articles</a>
     </div>
-  </footer>
+    <div class="footer-links">
+      <h4>Légal</h4>
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">Gestion des cookies</a>
+      <a href="#">Affiliation</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2025 PecheComparatif.fr — Tous droits réservés. Site participant au programme d'affiliation Amazon EU.</p>
+    </div>
+  </div>
+</footer>
