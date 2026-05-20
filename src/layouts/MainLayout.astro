@@ -14,10 +14,17 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <!-- sidebar-overlay est rendu UNE SEULE FOIS, ici dans le layout -->
+    <!-- Ne pas en ajouter un dans Sidebar.astro -->
     <Sidebar />
     <Header />
     <main>

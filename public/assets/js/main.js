@@ -15,27 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar?.classList.add('open');
     sidebarOverlay?.classList.add('active');
     navToggle?.classList.add('open');
-    document.body.style.overflow = ''; // pas de lock scroll — sidebar flotte
+    navToggle?.setAttribute('aria-expanded', 'true');
   }
 
   function closeSidebar() {
     sidebar?.classList.remove('open');
     sidebarOverlay?.classList.remove('active');
     navToggle?.classList.remove('open');
+    navToggle?.setAttribute('aria-expanded', 'false');
   }
 
   navToggle?.addEventListener('click', () => {
-    const isOpen = sidebar?.classList.contains('open');
-    isOpen ? closeSidebar() : openSidebar();
+    sidebar?.classList.contains('open') ? closeSidebar() : openSidebar();
   });
 
   sidebarOverlay?.addEventListener('click', closeSidebar);
 
-  // Fermer la sidebar au clic sur un lien de nav (navigation SPA)
+  // Fermer la sidebar au clic sur un lien de nav
   sidebar?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      closeSidebar();
-    });
+    link.addEventListener('click', closeSidebar);
   });
 
   // Fermeture avec Escape
@@ -44,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Lien actif dans la sidebar ───────────────────── */
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname;
   sidebar?.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href').split('/').pop();
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    const href = link.getAttribute('href');
+    // Correspondance exacte ou page d'accueil
+    if (href === currentPath || (currentPath === '/' && href === '/')) {
       link.classList.add('active');
     }
   });
@@ -64,7 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
       productCards.forEach(card => {
         const show = filter === 'all' || card.dataset.brand === filter;
         card.style.display = show ? '' : 'none';
-        if (show) card.style.animation = 'fadeInUp .35s ease both';
+        if (show) {
+          card.style.animation = 'none';
+          // Force reflow pour relancer l'animation
+          void card.offsetHeight;
+          card.style.animation = 'fadeInUp .35s ease both';
+        }
       });
     });
   });
@@ -118,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   compareLaunch?.addEventListener('click', () => {
-    alert('Comparaison de ' + selected.length + ' produits — fonctionnalité à brancher sur vos données !');
+    alert(`Comparaison de ${selected.length} produits — fonctionnalité à brancher sur vos données !`);
   });
 
   /* ── Barre de recherche (hero) ────────────────────── */

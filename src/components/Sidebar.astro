@@ -1,6 +1,8 @@
 ---
 // src/components/Sidebar.astro
+// L'overlay est rendu ICI et nulle part ailleurs
 ---
+
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
 <aside class="site-sidebar" id="site-sidebar" role="navigation" aria-label="Menu principal">
@@ -11,9 +13,9 @@
         src="/assets/img/logo/logo.png"
         alt="PecheComparatif.fr"
         class="sidebar-logo"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        onerror="this.style.display='none'; document.getElementById('sidebar-logo-fallback').style.display='block';"
       />
-      <div class="sidebar-logo-text" style="display:none;">
+      <div class="sidebar-logo-text" id="sidebar-logo-fallback" style="display:none;">
         Peche<span>Comparatif</span>.fr
       </div>
     </a>
