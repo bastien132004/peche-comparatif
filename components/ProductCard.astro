@@ -1,0 +1,19 @@
+---
+import type { Product } from '../data/products';
+const { product } = Astro.props as { product: Product };
+const stars = '★'.repeat(Math.round(product.rating)) + '☆'.repeat(5 - Math.round(product.rating));
+---
+<article class="product" data-category={product.category} data-name={`${product.brand} ${product.name}`.toLowerCase()}>
+  <div class="product-top"><span class="type">{product.category}</span>{product.badge && <span class="badge">{product.badge}</span>}</div>
+  <p class="brand">{product.brand}</p><h3>{product.name}</h3><p class="description">{product.description}</p>
+  <p class="rating" aria-label={`Note ${product.rating} sur 5`}>{stars} <span>{product.rating.toFixed(1)} · {product.reviews} avis</span></p>
+  <div class="price"><strong>{product.price.toFixed(2).replace('.', ',')} €</strong><span>chez {product.shop}</span></div>
+  <div class="actions"><a class="offer" href={product.url} target="_blank" rel="nofollow sponsored noopener">Voir l'offre ↗</a><button class="compare-toggle" data-product-id={product.id} data-product-name={`${product.brand} ${product.name}`}>+ Comparer</button></div>
+</article>
+<style>
+  .product { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:10px; transition:.2s transform,.2s box-shadow; } .product:hover { transform:translateY(-3px); box-shadow:0 10px 25px #17351a12; }
+  .product-top,.actions { display:flex; justify-content:space-between; align-items:center; gap:10px; } .type,.badge { font-size:.75rem; font-weight:800; border-radius:999px; padding:4px 9px; } .type { background:#edf4e9; color:var(--green); } .badge { background:var(--lime); }
+  .brand { margin:6px 0 -8px; color:var(--green); font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; } h3 { margin:0; font-size:1.08rem; } .description { color:var(--muted); font-size:.9rem; margin:0; min-height:42px; }
+  .rating { margin:0; color:#e7a816; font-size:1.05rem; } .rating span { color:var(--muted); font-size:.82rem; } .price { border-top:1px solid var(--line); padding-top:12px; display:flex; flex-direction:column; } .price strong { font-size:1.35rem; } .price span { color:var(--muted); font-size:.82rem; }
+  .offer,.compare-toggle { border:0; background:none; color:var(--green); font:inherit; font-size:.86rem; font-weight:800; cursor:pointer; text-decoration:none; } .compare-toggle.selected { color:#fff; background:var(--green); border-radius:7px; padding:7px 9px; }
+</style>
