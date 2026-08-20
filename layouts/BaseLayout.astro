@@ -1,0 +1,28 @@
+---
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <style>
+      :root { --ink:#14251c; --green:#176b3a; --lime:#c8ed5a; --paper:#f8faf6; --line:#dfe7dd; --muted:#627269; }
+      * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.5 Inter, ui-sans-serif, system-ui, sans-serif; }
+      a { color:inherit; } .wrap { width:min(1120px, calc(100% - 32px)); margin:auto; } .site-header { background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+      .nav { height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px; } .brand { color:var(--green); text-decoration:none; font-weight:850; font-size:1.2rem; } .brand span{ color:var(--ink); }
+      .nav-links { display:flex; gap:20px; list-style:none; padding:0; margin:0; } .nav-links a { color:var(--muted); text-decoration:none; font-weight:650; } .nav-links a:hover { color:var(--green); }
+      .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:0; border-radius:9px; padding:12px 16px; cursor:pointer; font:inherit; font-weight:750; text-decoration:none; } .btn-primary { background:var(--green); color:#fff; } .btn-secondary { background:#fff; border:1px solid var(--line); color:var(--ink); }
+      .site-footer { margin-top:70px; padding:28px 0; background:#10251a; color:#d6e2d7; } .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; } .notice { font-size:.85rem; color:#9eb3a4; }
+      @media(max-width:620px) { .nav-links { display:none; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header"><nav class="nav wrap"><a class="brand" href="/">Pêche<span>Comparatif</span></a><ul class="nav-links"><li><a href="#comparateur">Comparateur</a></li><li><a href="#guides">Guides</a></li><li><a href="#apropos">À propos</a></li></ul></nav></header>
+    <main><slot /></main>
+    <footer class="site-footer"><div class="wrap footer-inner"><strong>PêcheComparatif</strong><span class="notice">Certains liens peuvent être affiliés. Cela ne change pas le prix payé.</span></div></footer>
+  </body>
+</html>
